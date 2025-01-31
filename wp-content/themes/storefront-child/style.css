@@ -1,0 +1,13 @@
+/*
+Theme Name: Storefront Child
+Template: storefront
+Author: Android
+Version: 1.0
+*/
+
+.tech_item{
+    margin: 1%;
+    padding: 2%;
+    width: 31%;
+    border: 1px solid #ccc;
+}
