@@ -276,6 +276,9 @@ function filter_tech_posts() {
         );
     }
 
+    error_log( '===================' );
+    error_log( json_encode($price_to) );
+
     // Фильтрация по дате выпуска
     if ($release_date_from) {
         $args['meta_query'][] = array(
@@ -338,7 +341,6 @@ function filter_tech_posts() {
     // Запрос
     $query = new WP_Query($args);
 
-    error_log( 'SECOND!' );
 
     // Собираем посты в массив для отправки на фронт
     $posts = array();
@@ -356,11 +358,11 @@ function filter_tech_posts() {
     }
 
 //    echo '<pre>';
-    print_r('sdgdgdfgdfgdf');
-    print_r($posts);
+//    print_r('sdgdgdfgdfgdf');
+//    print_r($posts);
 
 //    echo '</pre>';
-    exit;
+//    exit;
 
     // Возвращаем результат в формате JSON
     wp_send_json_success($posts); // Возвращает успешный ответ с данными
@@ -371,13 +373,21 @@ add_action('admin_post_nopriv_filter_tech_posts', 'filter_tech_posts');
 add_action('admin_post_filter_tech_posts', 'filter_tech_posts');
 
 
-function my_theme_enqueue_scripts() {
+function my_theme_enqueue_assets() {
+
+    wp_enqueue_style(
+        'theme-style',
+        get_stylesheet_directory_uri() . '/assets/css/custom.min.css',
+        array(),
+        null,
+        'all'
+    );
 
     // Подключаем наш JS файл
     wp_enqueue_script(
-        'filter-js', // уникальное название скрипта
-        get_stylesheet_directory_uri() . '/assets/js/filter.js', // путь к файлу
-        array('jquery'), // зависимости от других скриптов (если нужно)
+        'filter-js',
+        get_stylesheet_directory_uri() . '/assets/js/min/filter.min.js',
+        array('jquery'),
         null,
         true
     );
@@ -385,7 +395,7 @@ function my_theme_enqueue_scripts() {
     // Локализуем параметры для скрипта
     wp_localize_script('filter-js', 'ajax_url', [admin_url('admin-post.php')]);
 }
-add_action('wp_enqueue_scripts', 'my_theme_enqueue_scripts');
+add_action('wp_enqueue_scripts', 'my_theme_enqueue_assets');
 
 
 //Скрипты для админки

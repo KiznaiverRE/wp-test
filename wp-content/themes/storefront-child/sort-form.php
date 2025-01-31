@@ -1,4 +1,4 @@
-<form style="text-align: end; margin-bottom: 3rem" id="tech-sort" method="POST">
+<form style="text-align: end; margin-bottom: 3rem" id="tech-sort" class="sort-form" method="POST">
     <input type="hidden" name="action" value="filter_tech_posts">
 
     <label for="sort_by">Сортировать по:</label>

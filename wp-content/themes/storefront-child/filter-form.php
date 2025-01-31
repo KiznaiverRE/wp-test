@@ -1,4 +1,4 @@
-<form id="tech-filters" method="POST">
+<form id="tech-filters" class="filter-form" method="POST">
     <input type="hidden" name="action" value="filter_tech_posts">
     <p>
         <label for="price_from">Цена от:</label>
